@@ -785,7 +785,7 @@ The Device Preview package allows you to simulate your Flutter app on various de
 <br>
 Key features include:
 
-ol>
+<ol>
   <li><strong>Device Simulation:</strong> Preview your app on a wide range of devices.</li>
   <li><strong>Orientation Adjustment:</strong> Change device orientation to test responsiveness.</li>
   <li><strong>Dynamic System Configuration:</strong> Simulate different system settings like language, dark mode, and text scaling.</li>
@@ -802,7 +802,7 @@ Chucker Flutter is a powerful tool for inspecting HTTP(S) requests and responses
 <br>
 Key features include:
 
-ol>
+<ol>
   <li><strong>Network Traffic Inspection:</strong> Monitor HTTP(S) requests and responses.</li>
   <li><strong>Local Storage:</strong> Save network data for offline analysis.</li>
   <li><strong>User Interface:</strong> Access network data through an intuitive UI.</li>
@@ -817,7 +817,7 @@ Flutter ScreenUtil is a plugin that helps adapt your app's UI to different scree
 <br>
 Key features include:
 
-ol>
+<ol>
   <li><strong>Screen Size Adaptation:</strong> Adjust UI elements to fit various screen sizes.</li>
   <li><strong>Font Size Scaling:</strong> Scale fonts according to screen dimensions.</li>
   <li><strong>Design Consistency:</strong> Maintain consistent design across devices.</li>
@@ -831,7 +831,7 @@ Awesome Extensions is a package that provides a collection of useful extensions 
 <br>
 Key features include:
 
-ol>
+<ol>
   <li><strong>Widget Extensions:</strong> Enhance widget functionality with additional methods.</li>
   <li><strong>Responsive Design:</strong> Simplify the creation of responsive layouts.</li>
   <li><strong>Minimize boilerplate code for cleaner implementations.</li>
