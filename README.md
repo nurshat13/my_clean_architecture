@@ -823,7 +823,7 @@ Key features include:
   <li><strong>Design Consistency:</strong> Maintain consistent design across devices.</li>
 </ol>
 
-For more details, refer to the <a href="[https://pub.dev/packages/chucker_flutter](https://pub.dev/packages/flutter_screenutil)">Flutter ScreenUtil package page</a>.
+For more details, refer to the <a href="https://pub.dev/packages/chucker_flutter">Flutter ScreenUtil package page</a>.
 
 ### 🔹 4. Awesome Extensions
 
