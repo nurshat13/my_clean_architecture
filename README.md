@@ -244,7 +244,7 @@ root/
 │   │   │   ├── domain/         # Domain layer (use cases, entities, repository contracts)
 │   │   │   ├── presentation/   # UI and state management (BLoC, screens, widgets)
 │   │   ├── home/               # Home module (structured like auth)
-│   │── injection/              # `injection_container.dart` for initializing dependencies (GetIt)
+│   │── injection_container.dart# `injection_container.dart` for initializing dependencies (GetIt)
 │   │── main.dart               # Main entry point (production)
 │   │── main_dev.dart           # Main entry point (development - for flavors)
 ```
