@@ -823,7 +823,7 @@ Key features include:
   <li><strong>Design Consistency:</strong> Maintain consistent design across devices.</li>
 </ol>
 
-For more details, refer to the <a href="https://pub.dev/packages/chucker_flutter">Flutter ScreenUtil package page</a>.
+For more details, refer to the <a href="https://pub.dev/packages/flutter_screenutil">Flutter ScreenUtil package page</a>.
 
 ### 🔹 4. Awesome Extensions
 
@@ -837,7 +837,7 @@ Key features include:
   <li><strong>Minimize boilerplate code for cleaner implementations.</li>
 </ol>
 
-For more details, refer to the <a href="https://pub.dev/packages/chucker_flutter">Awesome Extensions package page</a>.
+For more details, refer to the <a href="https://pub.dev/packages/awesome_extensions">Awesome Extensions package page</a>.
 
 Integrating these packages into your Flutter projects can streamline development processes, enhance debugging capabilities, and ensure your applications are responsive and well-optimized across various devices.🚀
 
