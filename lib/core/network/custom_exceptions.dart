@@ -64,6 +64,20 @@ class CustomException implements Exception {
   factory CustomException.fromDioException(Exception error) {
     try {
       if (error is DioException) {
+        if (error.response?.statusCode == 502) {
+          return CustomException(
+            exceptionType: ExceptionType.badResponseException,
+            statusCode: error.response?.statusCode,
+            message: 'Ошибка сервера. Пожалуйста, попробуйте позже.',
+          );
+        }
+        if (error.response?.data is! Map<String, dynamic>) {
+          return CustomException(
+            exceptionType: ExceptionType.unrecognizedException,
+            statusCode: error.response?.statusCode,
+            message: error.response?.statusMessage ?? 'Непредвиденная ошибка',
+          );
+        }
         switch (error.type) {
           case DioExceptionType.badResponse:
             return CustomException(

@@ -11,11 +11,11 @@ class KeyValueStorageService {
     return await _keyValueStorage.getEncrypted(_accessTokenKey);
   }
 
-  void setAccessToken(String token) {
-    _keyValueStorage.setEncrypted(_accessTokenKey, token);
+  Future<void> setAccessToken(String token) async {
+    await _keyValueStorage.setEncrypted(_accessTokenKey, token);
   }
 
-  void resetKeys() {
+  Future resetKeys() async {
     _keyValueStorage
       ..clearCommon()
       ..clearEncrypted();

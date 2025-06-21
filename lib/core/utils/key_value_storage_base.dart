@@ -31,8 +31,26 @@ class KeyValueStorageBase {
   /// when possible.
   static Future<void> init() async {
     _sharedPrefs ??= await SharedPreferences.getInstance();
-    _secureStorage ??= const FlutterSecureStorage();
+
+    try {
+      _secureStorage ??= const FlutterSecureStorage(
+        aOptions: AndroidOptions(resetOnError: true),
+      );
+
+      // Try a simple read to trigger decryption if storage exists
+      await _secureStorage!.containsKey(key: '__dummy__');
+    } on PlatformException catch (e) {
+      debugPrint('SecureStorage init error: $e');
+
+      await recoverSecureStorage();
+
+      // Re-initialize after recovery
+      _secureStorage = const FlutterSecureStorage(
+        aOptions: AndroidOptions(resetOnError: true),
+      );
+    }
   }
+
 
   /// Reads the value for the key from common preferences storage
   T? getCommon<T>(String key) {
@@ -56,46 +74,60 @@ class KeyValueStorageBase {
   }
 
   /// Reads the decrypted value for the key from secure storage
-  Future<String?> getEncrypted(String key) {
+  Future<String?> getEncrypted(String key) async {
     try {
-      return _secureStorage!.read(key: key);
+      return await _secureStorage!.read(key: key);
     } on PlatformException catch (ex) {
-      debugPrint('$ex');
-      return Future<String?>.value();
+      debugPrint('SecureStorage Read Error for key [$key]: $ex');
+
+      if (ex.message?.contains('AEADBadTagException') == true || ex.message?.contains('VERIFICATION_FAILED') == true) {
+        debugPrint('SecureStorage decryption failed. Triggering recovery...');
+        await recoverSecureStorage();
+      }
+
+      return null;
+    }
+  }
+
+  static Future<void> recoverSecureStorage() async {
+    try {
+      await _secureStorage?.deleteAll(); // Use with caution – this wipes secure data
+    } catch (e) {
+      debugPrint('SecureStorage recovery failed: $e');
     }
   }
 
   /// Sets the value for the key to common preferences storage
-  Future<bool> setCommon<T>(String key, T value) {
+  Future<bool> setCommon<T>(String key, T value) async {
     switch (T) {
       case const (String):
-        return _sharedPrefs!.setString(key, value as String);
+        return await _sharedPrefs!.setString(key, value as String);
       case const (int):
-        return _sharedPrefs!.setInt(key, value as int);
+        return await _sharedPrefs!.setInt(key, value as int);
       case const (bool):
-        return _sharedPrefs!.setBool(key, value as bool);
+        return await _sharedPrefs!.setBool(key, value as bool);
       case const (double):
-        return _sharedPrefs!.setDouble(key, value as double);
+        return await _sharedPrefs!.setDouble(key, value as double);
       default:
-        return _sharedPrefs!.setString(key, value as String);
+        return await _sharedPrefs!.setString(key, value as String);
     }
   }
 
   /// Sets the encrypted value for the key to secure storage
-  Future<bool> setEncrypted(String key, String value) {
+  Future<bool> setEncrypted(String key, String value) async {
     try {
-      _secureStorage!.write(key: key, value: value);
-      return Future.value(true);
+      await _secureStorage!.write(key: key, value: value);
+      return await Future.value(true);
     } on PlatformException catch (ex) {
       debugPrint('$ex');
-      return Future.value(false);
+      return await Future.value(false);
     }
   }
 
   /// Erases common preferences keys
-  Future<bool> clearCommon() => _sharedPrefs!.clear();
+  Future<bool> clearCommon() async => await _sharedPrefs!.clear();
 
-  Future<bool> removeCommon(String key) => _sharedPrefs!.remove(key);
+  Future<bool> removeCommon(String key) async => await _sharedPrefs!.remove(key);
 
   /// Erases encrypted keys
   Future<bool> clearEncrypted() async {
