@@ -3,5 +3,5 @@ import 'init_app.dart';
 
 Future<void> main() async {
   EnvironmentConfig.flavor = Flavor.production;
-  initApp();
+  await initApp();
 }

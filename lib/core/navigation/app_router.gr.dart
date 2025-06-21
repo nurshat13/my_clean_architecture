@@ -1,3 +1,4 @@
+// dart format width=80
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
 // **************************************************************************
@@ -9,92 +10,61 @@
 
 part of 'app_router.dart';
 
-abstract class _$AppRouter extends RootStackRouter {
-  // ignore: unused_element
-  _$AppRouter({super.navigatorKey});
-
-  @override
-  final Map<String, PageFactory> pagesMap = {
-    AuthRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const AuthPage(),
-      );
-    },
-    HomeRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const HomePage(),
-      );
-    },
-    PostDetailRoute.name: (routeData) {
-      final args = routeData.argsAs<PostDetailRouteArgs>();
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: PostDetailPage(
-          key: args.key,
-          id: args.id,
-        ),
-      );
-    },
-  };
-}
-
 /// generated route for
 /// [AuthPage]
 class AuthRoute extends PageRouteInfo<void> {
   const AuthRoute({List<PageRouteInfo>? children})
-      : super(
-          AuthRoute.name,
-          initialChildren: children,
-        );
+      : super(AuthRoute.name, initialChildren: children);
 
   static const String name = 'AuthRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const AuthPage();
+    },
+  );
 }
 
 /// generated route for
 /// [HomePage]
 class HomeRoute extends PageRouteInfo<void> {
   const HomeRoute({List<PageRouteInfo>? children})
-      : super(
-          HomeRoute.name,
-          initialChildren: children,
-        );
+      : super(HomeRoute.name, initialChildren: children);
 
   static const String name = 'HomeRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const HomePage();
+    },
+  );
 }
 
 /// generated route for
 /// [PostDetailPage]
 class PostDetailRoute extends PageRouteInfo<PostDetailRouteArgs> {
-  PostDetailRoute({
-    Key? key,
-    required int id,
-    List<PageRouteInfo>? children,
-  }) : super(
+  PostDetailRoute({Key? key, required int id, List<PageRouteInfo>? children})
+      : super(
           PostDetailRoute.name,
-          args: PostDetailRouteArgs(
-            key: key,
-            id: id,
-          ),
+          args: PostDetailRouteArgs(key: key, id: id),
           initialChildren: children,
         );
 
   static const String name = 'PostDetailRoute';
 
-  static const PageInfo<PostDetailRouteArgs> page =
-      PageInfo<PostDetailRouteArgs>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<PostDetailRouteArgs>();
+      return PostDetailPage(key: args.key, id: args.id);
+    },
+  );
 }
 
 class PostDetailRouteArgs {
-  const PostDetailRouteArgs({
-    this.key,
-    required this.id,
-  });
+  const PostDetailRouteArgs({this.key, required this.id});
 
   final Key? key;
 
@@ -104,4 +74,14 @@ class PostDetailRouteArgs {
   String toString() {
     return 'PostDetailRouteArgs{key: $key, id: $id}';
   }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! PostDetailRouteArgs) return false;
+    return key == other.key && id == other.id;
+  }
+
+  @override
+  int get hashCode => key.hashCode ^ id.hashCode;
 }

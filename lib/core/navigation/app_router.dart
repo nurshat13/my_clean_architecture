@@ -17,13 +17,13 @@ class AuthGuard extends AutoRouteGuard {
     } else {
       resolver.next(false);
 
-      resolver.redirect(AuthRoute());
+      resolver.redirectUntil(AuthRoute());
     }
   }
 }
 
-@AutoRouterConfig(replaceInRouteName: 'Page,Route')
-class AppRouter extends _$AppRouter {
+@AutoRouterConfig(replaceInRouteName: 'Screen|Page,Route')
+class AppRouter extends RootStackRouter {
   @override
   List<AutoRoute> get routes => [
         AutoRoute(page: AuthRoute.page),
@@ -31,3 +31,4 @@ class AppRouter extends _$AppRouter {
         AutoRoute(page: PostDetailRoute.page),
       ];
 }
+

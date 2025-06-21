@@ -150,7 +150,7 @@ class NetworkClient implements NetworkClientInterface {
         queryParams: queryParams,
         cacheOptions: _dioService.globalCacheOptions?.copyWith(
           policy: cachePolicy,
-          maxStale: cacheAgeDays != null ? Nullable(Duration(days: cacheAgeDays)) : null,
+          maxStale: cacheAgeDays != null ? Duration(days: cacheAgeDays) : null,
         ),
         options: Options(extra: extra),
         cancelToken: cancelToken,
@@ -192,7 +192,7 @@ class NetworkClient implements NetworkClientInterface {
         queryParams: queryParams,
         cacheOptions: _dioService.globalCacheOptions?.copyWith(
           policy: cachePolicy,
-          maxStale: cacheAgeDays != null ? Nullable(Duration(days: cacheAgeDays)) : null,
+          maxStale: cacheAgeDays != null ? Duration(days: cacheAgeDays) : null,
         ),
         options: Options(
           extra: <String, Object?>{

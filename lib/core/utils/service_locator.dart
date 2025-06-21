@@ -21,10 +21,10 @@ void setupApiService() {
     store: MemCacheStore(
       maxEntrySize: 1024 * 1024 * 20, // 20MB
       maxSize: (1024 * 1024 * 21) * 5,
-    ), 
+    ),
     policy: CachePolicy.noCache, // Bcz we force cache on-demand in repositories
     maxStale: const Duration(days: 30), // No of days cache is valid
-    keyBuilder: (options) => options.path,
+    keyBuilder: ({Map<String, String>? headers, required Uri url}) => url.toString(),
   );
   final dioService = DioService(
     dioClient: Dio(),
